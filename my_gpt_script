@@ -1,0 +1,30 @@
+import torch
+from transformers import GPT2Tokenizer, GPT2LMHeadModel
+
+# Load the pre-trained GPT-2 model and tokenizer
+tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
+model = GPT2LMHeadModel.from_pretrained('gpt2')
+
+# Set the device to run the model on
+device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+model.to(device)
+
+# Define a function to generate text from user input
+def generate_text(prompt):
+    input_ids = tokenizer.encode(prompt, return_tensors='pt')
+    input_ids = input_ids.to(device)
+
+    # Generate text
+    output = model.generate(input_ids, max_length=200, do_sample=True)
+
+    # Decode the generated text
+    output_text = tokenizer.decode(output[0], skip_special_tokens=True)
+    return output_text
+
+# Ask the user for input and generate text
+while True:
+    prompt = input('Enter a prompt (or "quit" to exit): ')
+    if prompt == 'quit':
+        break
+    output_text = generate_text(prompt)
+    print(output_text)
