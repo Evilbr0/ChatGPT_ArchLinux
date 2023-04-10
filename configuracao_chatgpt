@@ -38,6 +38,7 @@ wget https://cdn.huggingface.co/gpt2/resolve/main/pytorch_model.bin
 
 5.
 # Escreva um script Python para interagir com o modelo GPT:
+# https://github.com/Evilbr0/ChatGPT_ArchLinux/blob/main/my_gpt_script <- usar este script
 # Você pode usar o mesmo script Python fornecido na resposta anterior para interagir com o modelo GPT.
 
 6.
